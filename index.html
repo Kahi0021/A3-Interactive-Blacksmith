@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blacksmith — The Tiny Forge</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header><p>MTM6302 · Assignment 1</p><span>Blacksmith</span></header>
+  <main>
+    <p class="eyebrow">Your workshop</p>
+    <h1>The Tiny Forge</h1>
+    <p class="intro">Build the heat. Craft a sword. Start again.</p>
+    <div class="layout">
+      <!-- JavaScript applies exactly one status class to this container. -->
+      <section id="forge" class="forge is-cold" aria-labelledby="forge-heading">
+        <div class="forge-top">
+          <p class="eyebrow">Forge condition</p>
+          <h2 id="forge-heading">At the anvil</h2>
+          <img id="forge-image" src="assets/forge-cold.svg" width="420" height="290"
+            alt="A stone forge with dark coals and no flames">
+          <p id="forge-status" class="status">Too cold</p>
+        </div>
+        <div class="readings">
+          <div><h3>Heat</h3><p><span id="heat-value">20</span><span class="unit"> / 100</span></p></div>
+          <div><h3>Swords made</h3><p id="sword-count">0</p></div>
+        </div>
+        <div class="message-box">
+          <h3>Workshop log</h3>
+          <p id="action-message" role="status">Welcome to the forge. Add heat to begin.</p>
+        </div>
+      </section>
+      <aside aria-label="Game instructions">
+        <section class="panel">
+          <h2>Console commands</h2>
+          <p>Write each function in <code>script.js</code>, then try it in the browser console.</p>
+          <dl>
+            <dt><code>heatForge(20)</code></dt><dd>Add 20 heat, up to 100.</dd>
+            <dt><code>makeSword()</code></dt><dd>Use 30 heat to make one sword.</dd>
+            <dt><code>resetForge()</code></dt><dd>Return to 20 heat and zero swords.</dd>
+          </dl>
+          <p class="note">Commands work once you have built them. Refreshing resets the game.</p>
+        </section>
+        <section class="panel">
+          <h2>Know your forge</h2>
+          <ul class="rules">
+            <li><strong>0–29</strong><span>Too cold to craft.</span></li>
+            <li><strong>30–69</strong><span>Ready to forge.</span></li>
+            <li><strong>70–100</strong><span>Roaring fire. Keep crafting!</span></li>
+          </ul>
+          <p class="note">Use whole-number heating amounts from 0 to 100.</p>
+        </section>
+      </aside>
+    </div>
+    <footer>Call an action → change the state → update the page.</footer>
+  </main>
+</body>
+</html>
