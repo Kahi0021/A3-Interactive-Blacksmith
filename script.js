@@ -1,12 +1,16 @@
 
 
-// Select page elements//
 const forgeSection = document.querySelector("#forge");
 const forgeImage = document.querySelector("#forge-image");
 const forgeStatusText = document.querySelector("#forge-status");
 const heatDisplay = document.querySelector("#heat-value");
 const swordDisplay = document.querySelector("#sword-count");
 const actionMessage = document.querySelector("#action-message");
+
+const heatForm = document.querySelector("#heat-form");
+const heatInput = document.querySelector("#heat-input");
+const makeSwordButton = document.querySelector("#make-sword-button");
+const resetButton = document.querySelector("#reset-button");
 
 let forgeHeat = 20;
 let swordsMade = 0;
@@ -50,7 +54,6 @@ function updateForge() {
 }
 
 
-
 // Adds heat, capped at 100//
 function heatForge(amount) {
   forgeHeat = forgeHeat + amount;
@@ -59,6 +62,7 @@ function heatForge(amount) {
     forgeHeat = 100;
   }
 
+  actionMessage.classList.remove("error");
   actionMessage.textContent = "You stoke the forge. The heat is now " + forgeHeat + ".";
   updateForge();
 }
@@ -68,21 +72,60 @@ function makeSword() {
   if (forgeHeat >= 30) {
     forgeHeat = forgeHeat - 30;
     swordsMade = swordsMade + 1;
+    actionMessage.classList.remove("error");
     actionMessage.textContent = "You hammer out a fine sword!";
   } else {
+    actionMessage.classList.add("error");
     actionMessage.textContent = "The forge needs at least 30 heat to make a sword. Add more heat.";
   }
 
   updateForge();
 }
 
-// Back to the starting state//
+
 function resetForge() {
   forgeHeat = 20;
   swordsMade = 0;
-  actionMessage.textContent = "Welcome to the forge. Add heat to begin.";
+  heatInput.value = "";
+  actionMessage.classList.remove("error");
+  actionMessage.textContent = "";
   updateForge();
 }
 
-// --- Start ---
+
+heatForm.addEventListener("submit", function (event) {
+  event.preventDefault(); // stop the page from reloading
+
+  const rawValue = heatInput.value.trim();
+  const amount = Number(rawValue);
+  let errorText = "";
+
+  if (rawValue === "" || !Number.isFinite(amount)) {
+    errorText = "Please enter a number of heat to add.";
+  } else if (!Number.isInteger(amount)) {
+    errorText = "Heat must be a whole number, with no decimals.";
+  } else if (amount < 1) {
+    errorText = "Heat must be 1 or more.";
+  }
+
+  if (errorText !== "") {
+    actionMessage.classList.add("error");
+    actionMessage.textContent = errorText;
+    return; 
+  }
+
+  heatForge(amount);
+  heatInput.value = "";
+});
+
+makeSwordButton.addEventListener("click", function () {
+  makeSword();
+});
+
+resetButton.addEventListener("click", function () {
+  resetForge();
+});
+
+
+
 resetForge();

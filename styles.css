@@ -23,19 +23,37 @@ p { margin: 0 0 1rem; }
 .message-box p { margin: 0; min-height: 3.2em; }
 aside { display: grid; gap: 1.5rem; }
 .panel { padding: 1.5rem; background: white; border: 1px solid #bdc9c2; border-radius: 1rem; }
-dl { margin: 0; }
-dt { margin-top: 1rem; }
-dd { margin-left: 0; margin-top: .25rem; }
 code { background: #e9f2ec; color: #004b31; padding: .2rem .4rem; border-radius: .25rem; font-size: .95rem; overflow-wrap: anywhere; }
 .note { font-size: .875rem; margin: 1.25rem 0 0; color: #455449; }
 .rules { list-style: none; padding: 0; margin: 0; }
 .rules li { display: flex; gap: 1rem; padding: .5rem 0; }
 .rules strong { min-width: 4rem; }
 footer { margin-top: 2rem; font-size: .9rem; color: #455449; }
+
 /* Match these class names in updateForge(). Remove the old class first. */
 .is-cold { --status-bg: #e4eaf1; --status-ink: #263b50; }
 .is-ready { --status-bg: #d8eee1; --status-ink: #004b31; }
 .is-roaring { --status-bg: #ffe3b5; --status-ink: #703400; }
-@media (max-width: 700px) { .layout { grid-template-columns: 1fr; } main { padding-top: 1.5rem; } .forge-top, .readings { padding: 1.5rem; } .message-box { margin-inline: 1.5rem; } }
 
 #forge-image { display: block; width: 100%; height: auto; max-height: 240px; object-fit: contain; margin: -1rem auto 1rem; }
+
+/* Controls */
+.heat-form { margin-bottom: 1rem; }
+label { display: block; font-weight: bold; margin-bottom: .5rem; }
+.form-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .5rem; }
+input[type="number"] { flex: 1 1 8rem; min-width: 0; font-size: 1.1rem; padding: .6rem .75rem; border: 2px solid #bdc9c2; border-radius: .5rem; }
+button { font-size: 1rem; font-weight: bold; padding: .7rem 1.2rem; border: 2px solid #006341; border-radius: .5rem; background: #006341; color: white; cursor: pointer; }
+button:hover { background: #004b31; }
+button:focus-visible, input:focus-visible { outline: 3px solid #ffb000; outline-offset: 2px; }
+button.wide { width: 100%; }
+button.secondary { background: white; color: #006341; }
+button.secondary:hover { background: #e9f2ec; }
+.hint { font-size: .9rem; color: #455449; margin: 0 0 1.25rem; }
+.message-box .error { color: #b00020; font-weight: bold; }
+
+@media (max-width: 700px) {
+  .layout { grid-template-columns: 1fr; }
+  main { padding-top: 1.5rem; }
+  .forge-top, .readings { padding: 1.5rem; }
+  .message-box { margin-inline: 1.5rem; }
+}
